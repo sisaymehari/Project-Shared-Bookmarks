@@ -10,6 +10,7 @@ window.onload = function () {
   const users = getUserIds();
   const userSelect = document.getElementById("user-selector");
 
+  // Populate user dropdown
   users.forEach((userId) => {
     const option = document.createElement("option");
     option.value = userId;
