@@ -1,52 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Shared Bookmarks</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Shared Bookmarks</title>
-</head>
+  <body>
+    <h1>Shared Bookmarks</h1>
 
-<body>
-
-  <h1>Shared Bookmarks</h1>
-
-  <div class="container">
-
-
-    <div class="bookmark-list">
-
-      <div class="user-select-box">
-        <label for="user-selector">Select user:</label>
-        <select id="user-selector">
-          <option>Select the User</option>
-        </select>
+    <div class="container">
+      <div class="bookmark-list">
+        <div class="user-select-box">
+          <label for="user-selector">Select user:</label>
+          <select id="user-selector">
+            <option>Select the User</option>
+          </select>
+        </div>
+        <br />
+        <h2>User Bookmarks</h2>
+        <p class="empty-text">No bookmarks yet.</p>
       </div>
-      <br />
-      <h2>User Bookmarks</h2>
-      <p class="empty-text">No bookmarks yet.</p>
 
+      <form id="book-form">
+        <h2>Add New Bookmark</h2>
+
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Enter the Title" />
+
+        <label for="url">URL</label>
+        <input type="url" id="url" placeholder="https://example.com" />
+
+        <label for="description">Description</label>
+        <input type="text" id="description" placeholder="Description" />
+
+        <button type="submit">Save Bookmark</button>
+      </form>
     </div>
-
-
-    <form id="book-form">
-      <h2>Add New Bookmark</h2>
-
-      <label for="title">Title</label>
-      <input type="text" id="title" placeholder="Enter the Title" />
-
-      <label for="url">URL</label>
-      <input type="text" id="url" placeholder="Enter The URL" />
-
-      <label for="description">Description</label>
-      <input type="text" id="description" placeholder="Description" />
-
-      <button type="submit">Save Bookmark</button>
-    </form>
-
-  </div>
-  <script type="module" src="script.js"></script>
-</body>
-
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
