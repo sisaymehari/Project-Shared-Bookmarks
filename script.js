@@ -45,6 +45,7 @@ window.onload = function () {
       return;
     }
 
+    // Check URL format
     if (!isValidUrl(url)) {
       alert("Please enter a valid URL (e.g., https://example.com)");
       return;
@@ -78,7 +79,7 @@ function displayBookmarks(userId) {
 
   // Sort bookmarks newest first
   const sortedBookmarks = bookmarks.sort(
-    (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+    (a, b) => new Date(b.timestamp) - new Date(a.timestamp),
   );
 
   sortedBookmarks.forEach((bookmark) => {
@@ -96,8 +97,8 @@ function createBookmarkElement(bookmark, userId) {
   div.innerHTML = `
     <div class="bookmark-title">
       <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">${
-    bookmark.title
-  }</a>
+        bookmark.title
+      }</a>
     </div>
     <div class="bookmark-description">${bookmark.description}</div>
     <div class="bookmark-meta">

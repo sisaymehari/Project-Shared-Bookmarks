@@ -8,12 +8,13 @@
 body {
   background-color: #f4f6f8;
   padding: 30px;
+  color: #222; /* default text color darker for contrast */
 }
 
 h1 {
   text-align: center;
   margin-bottom: 25px;
-  color: #333;
+  color: #222;
 }
 
 .container {
@@ -23,7 +24,7 @@ h1 {
 }
 
 .bookmark-list {
-  background: white;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
@@ -33,10 +34,11 @@ h1 {
 .bookmark-list h2 {
   margin-top: 15px;
   margin-bottom: 10px;
+  color: #222;
 }
 
 .empty-text {
-  color: #888;
+  color: #444; /* darker for contrast */
   font-style: italic;
 }
 
@@ -49,16 +51,18 @@ h1 {
 .user-select-box label {
   font-weight: bold;
   margin-right: 10px;
+  color: #222;
 }
 
 .user-select-box select {
   padding: 6px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  color: #222; /* dark text for contrast */
 }
 
 #book-form {
-  background: white;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
@@ -69,11 +73,13 @@ h1 {
 
 #book-form h2 {
   margin-bottom: 5px;
+  color: #222;
 }
 
 #book-form label {
   font-weight: bold;
   margin-top: 8px;
+  color: #222;
 }
 
 #book-form input {
@@ -81,6 +87,7 @@ h1 {
   padding: 8px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  color: #222; /* dark input text */
 }
 
 #book-form button {
@@ -88,14 +95,15 @@ h1 {
   padding: 10px;
   border: none;
   border-radius: 6px;
-  background-color: #007bff;
-  color: white;
+  background-color: #0056b3; /* darker blue for better contrast */
+  color: #ffffff; /* white text */
   cursor: pointer;
   font-weight: bold;
+  font-size: 16px; /* larger text for accessibility */
 }
 
 #book-form button:hover {
-  background-color: #0056b3;
+  background-color: #004494; /* slightly darker on hover */
 }
 
 /* Bookmark item styles */
@@ -115,15 +123,16 @@ h1 {
 
 .bookmark-title a {
   text-decoration: none;
-  color: #007bff;
+  color: #0056b3; /* darker blue for links */
 }
 
 .bookmark-title a:hover {
   text-decoration: underline;
+  color: #003f7f; /* darker on hover */
 }
 
 .bookmark-description {
-  color: #555;
+  color: #333; /* darker for contrast */
   margin-bottom: 10px;
   line-height: 1.4;
 }
@@ -133,7 +142,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: #666;
+  color: #444; /* dark enough for contrast */
 }
 
 .bookmark-actions {
@@ -145,15 +154,16 @@ h1 {
 .like-btn {
   padding: 5px 10px;
   border: 1px solid #ddd;
-  background: white;
+  background: #ffffff;
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+  color: #222; /* dark button text */
 }
 
 .copy-btn:hover,
 .like-btn:hover {
-  background: #f0f0f0;
+  background: #e6e6e6;
 }
 
 .like-count {
