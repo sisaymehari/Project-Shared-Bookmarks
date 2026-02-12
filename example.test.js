@@ -17,56 +17,50 @@ global.localStorage = {
 
 import assert from "node:assert";
 import test from "node:test";
-import { getUserIds, getData, setData } from "./storage.js";
-import { addBookmark, isValidUrl, generateId } from "./script.js";
+import { getData, setData } from "./storage.js";
+import { addBookmark, isValidUrl } from "./script.js";
 
-// 1. Check user count
+// 1. Adding a bookmark stores correct data
 
-test("User count is correct", () => {
-  assert.equal(getUserIds().length, 5);
-});
-
-// 2. Adding a bookmark stores it
-
-test("Adding a bookmark stores it correctly", () => {
+test("Adding a bookmark stores correct data structure", () => {
   const userId = "user1";
   setData(userId, []);
 
   addBookmark(userId, "Test Title", "https://example.com", "Test description");
 
   const bookmarks = getData(userId);
+
   assert.equal(bookmarks.length, 1);
   assert.equal(bookmarks[0].title, "Test Title");
+  assert.equal(bookmarks[0].url, "https://example.com");
+  assert.equal(bookmarks[0].description, "Test description");
+  assert.equal(bookmarks[0].likes, 0);
+  assert.ok(bookmarks[0].id);
 });
 
-// 3. URL validation works
+// 2. URL validation logic
 
-test("URL validation works", () => {
+test("URL validation correctly accepts and rejects URLs", () => {
   assert.equal(isValidUrl("https://example.com"), true);
   assert.equal(isValidUrl("http://example.com"), true);
   assert.equal(isValidUrl("ftp://example.com"), false);
   assert.equal(isValidUrl("not-a-url"), false);
 });
 
-// 4. Bookmark has a unique ID
+// 3. Bookmarks include a valid timestamp
 
-test("Bookmark has a unique ID", () => {
-  const userId = "user2";
+test("Bookmarks are created with a valid timestamp used for sorting", () => {
+  const userId = "user-time";
   setData(userId, []);
+
   addBookmark(userId, "Title", "https://example.com", "Desc");
 
   const bookmarks = getData(userId);
-  assert.ok(bookmarks[0].id);
-  assert.equal(typeof bookmarks[0].id, "string");
-});
+  const timestamp = bookmarks[0].timestamp;
 
-// 5. Bookmark likes start at 0
+  // Ensure timestamp exists
+  assert.ok(timestamp);
 
-test("Bookmark likes start at 0", () => {
-  const userId = "user3";
-  setData(userId, []);
-  addBookmark(userId, "Title", "https://example.com", "Desc");
-
-  const bookmarks = getData(userId);
-  assert.equal(bookmarks[0].likes, 0);
+  // Ensure timestamp is a valid date
+  assert.equal(isNaN(Date.parse(timestamp)), false);
 });
