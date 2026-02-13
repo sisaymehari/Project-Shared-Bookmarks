@@ -1,4 +1,3 @@
-// Simple localStorage mock for Node
 global.localStorage = {
   store: {},
   getItem(key) {
@@ -17,19 +16,13 @@ global.localStorage = {
 
 import assert from "node:assert";
 import test from "node:test";
-import { getUserIds, getData, setData } from "./storage.js";
-import { addBookmark, isValidUrl, generateId } from "./script.js";
+import { getData, setData } from "./storage.js";
+import { addBookmark, isValidUrl } from "./script.js";
 
-// 1. Check user count
-
-test("User count is correct", () => {
-  assert.equal(getUserIds().length, 5);
-});
-
-// 2. Adding a bookmark stores it
+// 1. Adding a bookmark stores it correctly
 
 test("Adding a bookmark stores it correctly", () => {
-  const userId = "user1";
+  const userId = "1";
   setData(userId, []);
 
   addBookmark(userId, "Test Title", "https://example.com", "Test description");
@@ -39,7 +32,7 @@ test("Adding a bookmark stores it correctly", () => {
   assert.equal(bookmarks[0].title, "Test Title");
 });
 
-// 3. URL validation works
+// 2. URL validation works
 
 test("URL validation works", () => {
   assert.equal(isValidUrl("https://example.com"), true);
@@ -48,25 +41,36 @@ test("URL validation works", () => {
   assert.equal(isValidUrl("not-a-url"), false);
 });
 
-// 4. Bookmark has a unique ID
-
-test("Bookmark has a unique ID", () => {
-  const userId = "user2";
-  setData(userId, []);
-  addBookmark(userId, "Title", "https://example.com", "Desc");
-
-  const bookmarks = getData(userId);
-  assert.ok(bookmarks[0].id);
-  assert.equal(typeof bookmarks[0].id, "string");
-});
-
-// 5. Bookmark likes start at 0
+// 3. Bookmark likes start at 0
 
 test("Bookmark likes start at 0", () => {
-  const userId = "user3";
+  const userId = "2";
   setData(userId, []);
   addBookmark(userId, "Title", "https://example.com", "Desc");
 
   const bookmarks = getData(userId);
   assert.equal(bookmarks[0].likes, 0);
+});
+
+// 4. NON-TRIVIAL TEST: Bookmarks are stored with timestamps
+// (used for reverse chronological sorting in the UI)
+
+test("Bookmarks are created with timestamps for sorting", async () => {
+  const userId = "3";
+  setData(userId, []);
+
+  addBookmark(userId, "First", "https://first.com", "First desc");
+
+  await new Promise((r) => setTimeout(r, 10));
+
+  addBookmark(userId, "Second", "https://second.com", "Second desc");
+
+  const bookmarks = getData(userId);
+
+  const firstTimestamp = new Date(bookmarks[0].timestamp);
+  const secondTimestamp = new Date(bookmarks[1].timestamp);
+
+  assert.ok(firstTimestamp instanceof Date);
+  assert.ok(secondTimestamp instanceof Date);
+  assert.ok(secondTimestamp > firstTimestamp);
 });

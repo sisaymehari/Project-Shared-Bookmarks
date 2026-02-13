@@ -20,7 +20,8 @@ if (typeof window !== "undefined") {
     // Handle user selection
     userSelect.addEventListener("change", function () {
       const selectedUserId = this.value;
-      if (selectedUserId && selectedUserId !== "Select the User") {
+      if (selectedUserId) {
+        // ✅ Fixed check
         currentUserId = selectedUserId;
         displayBookmarks(selectedUserId);
       } else {

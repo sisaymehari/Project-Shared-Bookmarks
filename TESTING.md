@@ -12,7 +12,7 @@ We selected different users from the dropdown and verified that the bookmarks sh
 
 # If there are no bookmarks for the selected user, a message is displayed
 
-We selected a user with no stored data and confirmed the message
+We selected a user with no stored data and confirmed the message  
 "No bookmarks yet for User X." appears on the screen.
 
 # The list of bookmarks must be shown in reverse chronological order
@@ -21,12 +21,13 @@ We added multiple bookmarks for the same user and confirmed the most recently cr
 
 # Each bookmark has a title, description and created at timestamp displayed
 
-After adding bookmarks, We checked that:
+After adding bookmarks, we checked that:
 
 - The title appears
 - The description appears
 - The created date/time is displayed
-  This is handled in `createBookmarkElement()`.
+
+This is handled in `createBookmarkElement()`.
 
 # Each bookmark’s title is a link to the bookmark’s URL
 
@@ -42,7 +43,8 @@ We clicked the ❤️ button several times and confirmed:
 
 - The number increases correctly
 - Refreshing the page keeps the updated like count
-  This is handled by `toggleLike()` and `setData()`.
+
+This is handled by `toggleLike()` and `setData()`.
 
 # The website must contain a form with inputs for a URL, a title, and a description
 
@@ -52,15 +54,16 @@ We checked the form contains:
 - Title input
 - Description input
 - Submit button
-  We also tested submitting the form using the keyboard (Enter key).
+
+We also tested submitting the form using the keyboard (Enter key).
 
 # Submitting the form adds a new bookmark for the relevant user only
 
-WE selected a user and added a bookmark. Then WE switched to another user and confirmed the bookmark does not appear there.
+We selected a user and added a bookmark. Then we switched to another user and confirmed the bookmark does not appear there.
 
 # After creating a new bookmark, the list of bookmarks for the current user is shown
 
-After submitting the form, wWe confirmed the new bookmark immediately appears without refreshing the page.
+After submitting the form, we confirmed the new bookmark immediately appears without refreshing the page.
 
 # The website must score 100 for accessibility in Lighthouse
 
@@ -68,12 +71,11 @@ We ran Lighthouse in Chrome DevTools and confirmed the Accessibility score is 10
 
 # Unit tests must be written for at least one non-trivial function
 
-Unit tests in **example.test.js**
+Unit tests are located in **example.test.js**.
 
 These tests verify:
 
-- User IDs count
 - Adding bookmarks stores data correctly
 - URL validation logic
-- Bookmark ID generation
-- Initial like count
+- Bookmark likes start at 0
+- Non-trivial test: bookmarks are created with timestamps to ensure reverse chronological sorting works. This ensures bookmarks display in the correct order for users.
