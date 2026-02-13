@@ -71,9 +71,6 @@ We ran Lighthouse in Chrome DevTools and confirmed the Accessibility score is 10
 Unit tests in **example.test.js**
 
 These tests verify:
-
-- User IDs count
-- Adding bookmarks stores data correctly
+- Adding a bookmark stores correct data
 - URL validation logic
-- Bookmark ID generation
-- Initial like count
+- Bookmarks include a valid timestamp
